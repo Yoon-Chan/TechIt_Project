@@ -13,6 +13,8 @@
         app:layout_constraintTop_toTopOf="parent"
         style="@style/ThemeOverlay.MaterialComponents.Toolbar.Primary"
         android:background="@color/design_default_color_primary"
+        app:title="@string/main_toolbar_name"
+        app:titleTextColor="@color/white"
         />
 
     <androidx.recyclerview.widget.RecyclerView

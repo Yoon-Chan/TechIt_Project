@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".memoActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/memoToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/design_default_color_primary"
+        app:titleTextColor="@color/white"
+        app:title="메모 추가"
+        />
+
+    <EditText
+        android:id="@+id/titleEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/memoToolbar"
+        android:layout_marginTop="16dp"
+        android:maxLines="1"
+        android:backgroundTint="@color/black"
+        />
+
+    <EditText
+        android:id="@+id/contentEditTxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/titleEditText"
+        android:layout_marginTop="16dp"
+        app:guidelineUseRtl="true"
+        android:backgroundTint="@color/black"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

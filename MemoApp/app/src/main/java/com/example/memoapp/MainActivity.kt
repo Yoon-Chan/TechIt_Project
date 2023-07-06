@@ -1,5 +1,6 @@
 package com.example.memoapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -17,6 +18,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolbar)
+        binding.toolbar.title = "메모앱"
 
     }
 
@@ -29,6 +31,8 @@ class MainActivity : AppCompatActivity() {
         return when(item.itemId){
             R.id.add -> {
                 Toast.makeText(this, "add menu 클릭", Toast.LENGTH_LONG).show()
+                val intent = Intent(this, memoActivity::class.java)
+                startActivity(intent)
                 true
             }
             else -> super.onOptionsItemSelected(item)
