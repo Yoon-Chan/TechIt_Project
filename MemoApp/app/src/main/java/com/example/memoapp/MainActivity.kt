@@ -15,7 +15,7 @@ import com.example.memoapp.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityMainBinding
-    private val dataList = mutableListOf<Memo>()
+    //private val dataList = mutableListOf<Memo>()
     private val requestLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ){
@@ -23,6 +23,11 @@ class MainActivity : AppCompatActivity() {
             val title = it.data?.getStringExtra("title")
             val content = it.data?.getStringExtra("content")
             val date = it.data?.getStringExtra("date")
+
+            if(title != null && content != null && date != null){
+                Memo.dataList.add(Memo(title,content,date))
+            }
+            binding.recyclerView.adapter?.notifyDataSetChanged()
             Log.d("result", "title : $title\ncontent : $content\ndate : $date")
         }
     }
@@ -40,13 +45,13 @@ class MainActivity : AppCompatActivity() {
         binding.toolbar.title = "메모앱"
 
         //임시 데이터
-        dataList.add(Memo("제목1", "내용1", "2023-07-07"))
-        dataList.add(Memo("제목2", "내용2", "2023-07-08"))
-        dataList.add(Memo("제목3", "내용3", "2023-07-09"))
+        Memo.dataList.add(Memo("제목1", "내용1", "2023-07-07"))
+        Memo.dataList.add(Memo("제목2", "내용2", "2023-07-08"))
+        Memo.dataList.add(Memo("제목3", "내용3", "2023-07-09"))
 
         //리사이클러 뷰 적용
         binding.recyclerView.apply {
-            adapter = MemoRecyclerViewAdapter(dataList, this@MainActivity)
+            adapter = MemoRecyclerViewAdapter(Memo.dataList, this@MainActivity)
             layoutManager = LinearLayoutManager(this@MainActivity)
         }
 

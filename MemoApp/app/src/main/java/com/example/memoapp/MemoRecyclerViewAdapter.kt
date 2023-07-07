@@ -18,9 +18,7 @@ class MemoRecyclerViewAdapter(val dataList : MutableList<Memo>, val mainActivity
             itemView.setOnClickListener {
                 //Toast.makeText(mainActivity.applicationContext, "$position 번째 뷰 선택", Toast.LENGTH_SHORT ).show()
                 val intent = Intent(mainActivity.applicationContext, DetailMemo::class.java)
-                intent.putExtra("title", dataList[position].title)
-                intent.putExtra("content", dataList[position].content)
-                intent.putExtra("date", dataList[position].date)
+                intent.putExtra("position", position)
                 mainActivity.startIntent(intent)
             }
         }
