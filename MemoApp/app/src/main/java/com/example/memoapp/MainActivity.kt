@@ -23,9 +23,12 @@ class MainActivity : AppCompatActivity() {
             val title = it.data?.getStringExtra("title")
             val content = it.data?.getStringExtra("content")
             val date = it.data?.getStringExtra("date")
-
             Log.d("result", "title : $title\ncontent : $content\ndate : $date")
         }
+    }
+
+    fun startIntent(intent: Intent){
+        requestLauncher.launch(intent)
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +46,7 @@ class MainActivity : AppCompatActivity() {
 
         //리사이클러 뷰 적용
         binding.recyclerView.apply {
-            adapter = MemoRecyclerViewAdapter(dataList)
+            adapter = MemoRecyclerViewAdapter(dataList, this@MainActivity)
             layoutManager = LinearLayoutManager(this@MainActivity)
         }
 

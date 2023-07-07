@@ -8,6 +8,11 @@
 
     <style name="Theme.MemoApp" parent="Base.Theme.MemoApp" >
         <item name="android:textColorSecondary">@color/white</item>
-
     </style>
+
+    <style name="Theme.DetailApp" parent="Base.Theme.MemoApp" >
+        <item name="android:textColorSecondary">@color/white</item>
+    </style>
+
+
 </resources>
