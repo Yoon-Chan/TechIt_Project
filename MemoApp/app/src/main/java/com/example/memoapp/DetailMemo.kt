@@ -1,10 +1,17 @@
 package com.example.memoapp
 
+import android.content.DialogInterface
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.view.View.OnClickListener
+import android.view.View.TEXT_ALIGNMENT_CENTER
+import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.example.memoapp.databinding.ActivityDetailMemoBinding
 
 class DetailMemo : AppCompatActivity() {
@@ -19,6 +26,11 @@ class DetailMemo : AppCompatActivity() {
 
         //받은 데이터를 표시하기 위한 setText
         setText()
+    }
+
+    override fun onRestart() {
+        setText()
+        super.onRestart()
     }
 
     fun setText(){
@@ -47,10 +59,34 @@ class DetailMemo : AppCompatActivity() {
             }
             R.id.update -> {
                 Toast.makeText(this, "수정버튼 클릭", Toast.LENGTH_SHORT).show()
+                val updateIntent = Intent(this, UpdateActivity::class.java)
+                val pos = intent.getIntExtra("position", -1)
+                if(pos != -1){
+                    updateIntent.putExtra("position", pos)
+                    startActivity(updateIntent)
+                }
                 true
             }
             R.id.delete -> {
-                Toast.makeText(this, "삭제버튼 클릭", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(this, "삭제버튼 클릭", Toast.LENGTH_SHORT).show()
+                val text = TextView(this)
+                text.text = "메모를 삭제하겠습니까?"
+                text.setPadding(70, 8, 0, 0)
+                AlertDialog.Builder(this)
+                    .setTitle("메모 삭제")
+                    .setView(text)
+                    .setNegativeButton("취소"){ _, _ ->
+                        //Toast.makeText(this, "취소버튼 클릭", Toast.LENGTH_SHORT).show()
+                    }
+                    .setPositiveButton("삭제"){ _, _ ->
+                        Toast.makeText(this, "삭제버튼 클릭", Toast.LENGTH_SHORT).show()
+                        val pos = intent?.getIntExtra("position", -1)
+                        pos?.let {
+                            Memo.dataList.removeAt(it)
+                        }
+                        finish()
+                    }
+                    .show()
                 true
             }
             else -> super.onOptionsItemSelected(item)

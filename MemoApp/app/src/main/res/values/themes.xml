@@ -14,5 +14,9 @@
         <item name="android:textColorSecondary">@color/white</item>
     </style>
 
+    <style name="Theme.UpdateApp" parent="Base.Theme.MemoApp" >
+        <item name="android:textColorSecondary">@color/white</item>
+    </style>
+
 
 </resources>

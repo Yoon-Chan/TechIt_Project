@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
             val date = it.data?.getStringExtra("date")
 
             if(title != null && content != null && date != null){
-                Memo.dataList.add(Memo(title,content,date))
+                Memo.dataList.add(0 ,Memo(title,content,date))
             }
             binding.recyclerView.adapter?.notifyDataSetChanged()
             Log.d("result", "title : $title\ncontent : $content\ndate : $date")
@@ -55,6 +55,11 @@ class MainActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(this@MainActivity)
         }
 
+    }
+
+    override fun onRestart() {
+        binding.recyclerView.adapter?.notifyDataSetChanged()
+        super.onRestart()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
