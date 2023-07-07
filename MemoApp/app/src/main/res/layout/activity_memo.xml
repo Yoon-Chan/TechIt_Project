@@ -23,6 +23,7 @@
         app:layout_constraintTop_toBottomOf="@id/memoToolbar"
         android:layout_marginTop="16dp"
         android:maxLines="1"
+        android:inputType="textAutoComplete"
         android:backgroundTint="@color/black"
         />
 
@@ -33,6 +34,7 @@
         app:layout_constraintTop_toBottomOf="@id/titleEditText"
         android:layout_marginTop="16dp"
         app:guidelineUseRtl="true"
+        android:inputType="textMultiLine"
         android:backgroundTint="@color/black"
         />
 
